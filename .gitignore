@@ -1,3 +1,6 @@
 my-materials/
 .DS_Store
 Thumbs.db
+out/
+profile/
+data/jobs/

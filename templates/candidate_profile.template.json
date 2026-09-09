@@ -32,7 +32,42 @@
     "target_company_stage": [],
     "target_locations": [],
     "remote_hybrid_onsite_preference": "",
-    "relocation_policy": ""
+    "relocation_policy": "",
+    "dealbreakers": [
+      "996 / 大小周",
+      "纯 on-call 文化",
+      "外包岗位",
+      "与画像 dealbreakers 冲突的其他条件"
+    ]
+  },
+  "evaluation_inputs": {
+    "_doc": "供 knowledge/evaluation_framework_cn.md 七维评估使用的画像侧输入。所有字段留空时评估仍可运行,但相关维度得分需标注'信息不足'。",
+    "skills": {
+      "required_hits": [],
+      "preferred_hits": [],
+      "known_gaps": []
+    },
+    "experience": {
+      "years_total": "",
+      "domains": [],
+      "responsibilities": []
+    },
+    "behavioral": {
+      "work_style": [],
+      "quality_orientation": "",
+      "collaboration_style": ""
+    },
+    "work_intensity_preference": "",
+    "commute": {
+      "max_commute_minutes": "",
+      "acceptable_cities": []
+    },
+    "languages": [
+      {
+        "language": "中文",
+        "level": "native"
+      }
+    ]
   },
   "compensation": {
     "base_salary_range": "",

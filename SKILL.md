@@ -23,6 +23,12 @@ Before searching or applying, make sure the user has:
 
 If any source is missing, initialize it first. Do not guess identity, legal, work authorization, compensation, current employment, sponsorship, relocation, or other high-impact facts.
 
+Bundled assets:
+
+- `core/` — pure-Python tools: `resume_render.py` (one-page Chinese resume → PDF), `jobs_search.py` (open-jobs-data search), `channel_list.py` (application action list). Requires Python 3.10+ and `reportlab` for resume rendering.
+- `knowledge/evaluation_framework_cn.md` — 7-dimension JD evaluation rubric for the Chinese job market (the single scoring standard for step 3).
+- `knowledge/methodology/` — reference methodology (candidate profile, behavioral profile, writing style, job evaluation, CV templates, interview prep, web research).
+
 ## Workflow
 
 ### 1. Initialize the System
@@ -56,6 +62,8 @@ When the user names a specific company (or you're evaluating one you found), wor
 
 Prioritize jobs by freshness, fit, feasibility, and conversion likelihood. Default to fresh jobs from the last 24 hours, then 48 hours if needed.
 
+For fit scoring, use the 7-dimension evaluation framework in `knowledge/evaluation_framework_cn.md` (skills 30% / experience 25% / behavioral-culture 15% / salary structure 10% / work intensity 10% / stability 5% / commute 5%, with hard deal-breakers forcing score ≤30). Run it against the candidate profile's `evaluation_inputs` section, write the resulting score into `job_pool`'s `evaluation_score` column, and record deal-breaker hits or key gaps in `notes`. Jobs with a deal-breaker hit go straight to `Skipped` with the reason. The full structured evaluation report format (defined in the framework doc) is used when the user asks whether a specific job is worth applying to, or when a job is promoted to Precision mode.
+
 Skip or defer roles that violate the user's rules, are clearly overleveled, are closed or duplicate, require unsupported work authorization, need missing materials, or involve long account-heavy flows with weak fit.
 
 ### 4. Shortlist Specific Positions and Let the User Choose
@@ -83,6 +91,8 @@ Use the user's chosen strategy:
 - Volume mode: use prebuilt resume variants by role family and move quickly.
 
 Default to Volume mode unless the user explicitly asks for Precision. Individual high-fit roles can be promoted from Volume to Precision.
+
+For Chinese-market roles in Precision mode, `core/resume_render.py` renders the tailored one-page Chinese resume to PDF (pure Python + reportlab, no LaTeX needed). Feed it the tailored content as JSON (name, title, contact, summary, skills, sections); all content must come from the candidate profile and the selected experiences per step 5. For non-Chinese markets or when the user has an existing DOCX resume source, edit the source file instead and keep `core/resume_render.py` as the fallback. Additional optional tools in `core/`: `jobs_search.py` (search the open-jobs-data dataset) and `channel_list.py` (generate an application channel/action list). Reference methodology for tailoring and interview prep lives in `knowledge/methodology/`.
 
 Never fabricate experience, credentials, degrees, employers, dates, work authorization, or portfolio artifacts.
 

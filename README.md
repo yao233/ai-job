@@ -10,12 +10,19 @@ This is not a one-click auto-apply bot. It is a structured workflow plus explici
 
 ```
 SKILL.md                        Core agent workflow and safety contract — start here
+core/                           Pure-Python tools (from ai-job-search-cn, integrated)
+  resume_render.py              One-page Chinese resume → PDF (reportlab + system fonts, no LaTeX)
+  jobs_search.py                Job search over the open-jobs-data dataset (optional)
+  channel_list.py               Application channel/action list generator
+knowledge/                      Evaluation & methodology (from ai-job-search-cn, integrated)
+  evaluation_framework_cn.md    7-dimension JD scoring rubric for the Chinese market
+  methodology/                  Candidate profile, behavioral profile, writing style, interview prep, etc.
 references/
   setup-workflow.md             Step-by-step onboarding the agent should follow
   application-playbook.md       Browser/ATS handling playbook (forms, uploads, CAPTCHA, etc.)
   safety-and-boundaries.md      Privacy, consent, and what should never be automated
 templates/
-  candidate_profile.template.json    Your facts: identity, contact, work authorization, targets
+  candidate_profile.template.json    Your facts: identity, contact, work authorization, targets, evaluation inputs
   application_rules.template.md      What to prioritize, consider, skip, or hand off to you
   resume_routing.template.md        Which resume/version to use for which role family
   answer_bank.template.md           Reusable truthful answers for common application questions
@@ -27,6 +34,8 @@ dashboard/                       A ready-to-run local dashboard (same CSV schema
   start-dashboard.bat / .sh     One-click launcher (Windows / macOS-Linux)
   *.csv                          Empty starter data files
 ```
+
+> **CN integration note:** the `core/` and `knowledge/` directories were merged in from the open-source project [ai-job-search-cn](https://github.com/sunyet-01/ai-job-search-cn) (itself derived from [MadsLorentzen/ai-job-search](https://github.com/MadsLorentzen/ai-job-search), MIT). How they plug into the workflow: `knowledge/evaluation_framework_cn.md` is the scoring standard used by SKILL.md step 3 (screening) — its score lands in the `evaluation_score` column of `job_pool.csv`; `core/resume_render.py` is the PDF renderer for Precision-mode Chinese resumes in SKILL.md step 6. Requirements: Python 3.10+ and `pip install reportlab`. The original upstream repos remain available for reference; this repo is now self-contained.
 
 ## Quick Start
 
