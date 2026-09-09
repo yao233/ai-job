@@ -1,4 +1,4 @@
-# JobHuntBot · CN Edition
+# AI-JOB · CN Edition
 
 > 一个面向 **2027 届中国校招** 的 AI 求职工作流：7 维 JD 评估 + JD 定制简历（docx 排序与中文 PDF 渲染）+ 申请进度追踪 + 一键本地看板。
 
